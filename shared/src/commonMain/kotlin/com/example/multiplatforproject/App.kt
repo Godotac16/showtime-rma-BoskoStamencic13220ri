@@ -1,17 +1,15 @@
 package com.example.multiplatforproject
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import com.example.multiplatforproject.navigation.Screen
 import com.example.multiplatforproject.presentation.auth.LoginScreen
 import com.example.multiplatforproject.presentation.auth.SignupScreen
-import com.example.multiplatforproject.presentation.splash.SplashScreen
 import com.example.multiplatforproject.presentation.auth.viewmodel.AuthViewModel
+import com.example.multiplatforproject.presentation.movies.MoviesScreen
+import com.example.multiplatforproject.presentation.movies.MoviesViewModel
+import com.example.multiplatforproject.presentation.splash.SplashScreen
+
 @Composable
 fun App() {
 
@@ -21,6 +19,10 @@ fun App() {
 
     val authViewModel = remember {
         AuthViewModel()
+    }
+
+    val moviesViewModel = remember {
+        MoviesViewModel()
     }
 
     MaterialTheme {
@@ -60,12 +62,9 @@ fun App() {
             }
 
             Screen.MOVIES -> {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text("MOVIES SCREEN")
-                }
+                MoviesScreen(
+                    viewModel = moviesViewModel
+                )
             }
         }
     }
