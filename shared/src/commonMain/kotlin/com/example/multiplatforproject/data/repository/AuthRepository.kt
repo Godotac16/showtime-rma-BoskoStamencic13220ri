@@ -1,12 +1,33 @@
-package com.example.multiplatforproject.data.remote
+package com.example.multiplatforproject.data.repository
 
-sealed class ApiResult<out T> {
+import com.example.multiplatforproject.data.model.LoginResponse
+import com.example.multiplatforproject.data.model.SignupResponse
+import com.example.multiplatforproject.data.remote.ApiResult
+import com.example.multiplatforproject.data.remote.AuthApi
 
-    data class Success<T>(
-        val data: T
-    ) : ApiResult<T>()
+class AuthRepository {
 
-    data class Error(
-        val message: String
-    ) : ApiResult<Nothing>()
+    suspend fun login(
+        username: String,
+        password: String
+    ): ApiResult<LoginResponse> {
+
+        return AuthApi.login(
+            username = username,
+            password = password
+        )
+    }
+
+    suspend fun signup(
+        fullName: String,
+        username: String,
+        password: String
+    ): ApiResult<SignupResponse> {
+
+        return AuthApi.signup(
+            fullName = fullName,
+            username = username,
+            password = password
+        )
+    }
 }

@@ -27,6 +27,10 @@ fun LoginScreen(
 
     val state = viewModel.state
 
+    if (state.isLoggedIn) {
+        onLoginClick()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -75,11 +79,20 @@ fun LoginScreen(
                 viewModel.onIntent(
                     AuthIntent.LoginClicked
                 )
-                onLoginClick()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Login")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        if (state.isLoading) {
+            Text("Loading...")
+        }
+
+        state.error?.let {
+            Text(it)
         }
 
         Spacer(modifier = Modifier.height(12.dp))

@@ -27,6 +27,10 @@ fun SignupScreen(
 
     val state = viewModel.state
 
+    if (state.isLoggedIn) {
+        onCreateAccountClick()
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -90,11 +94,20 @@ fun SignupScreen(
                 viewModel.onIntent(
                     AuthIntent.SignupClicked
                 )
-                onCreateAccountClick()
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Create Account")
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        if (state.isLoading) {
+            Text("Loading...")
+        }
+
+        state.error?.let {
+            Text(it)
         }
 
         Spacer(modifier = Modifier.height(12.dp))
