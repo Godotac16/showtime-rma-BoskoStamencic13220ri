@@ -6,6 +6,8 @@ import com.example.multiplatforproject.navigation.Screen
 import com.example.multiplatforproject.presentation.auth.LoginScreen
 import com.example.multiplatforproject.presentation.auth.SignupScreen
 import com.example.multiplatforproject.presentation.auth.viewmodel.AuthViewModel
+import com.example.multiplatforproject.presentation.movies.MovieDetailsScreen
+import com.example.multiplatforproject.presentation.movies.MovieDetailsViewModel
 import com.example.multiplatforproject.presentation.movies.MoviesScreen
 import com.example.multiplatforproject.presentation.movies.MoviesViewModel
 import com.example.multiplatforproject.presentation.splash.SplashScreen
@@ -23,6 +25,10 @@ fun App() {
 
     val moviesViewModel = remember {
         MoviesViewModel()
+    }
+
+    val movieDetailsViewModel = remember {
+        MovieDetailsViewModel()
     }
 
     MaterialTheme {
@@ -63,7 +69,22 @@ fun App() {
 
             Screen.MOVIES -> {
                 MoviesScreen(
-                    viewModel = moviesViewModel
+                    viewModel = moviesViewModel,
+                    onMovieClick = { imdbId ->
+
+                        movieDetailsViewModel.loadMovie(
+                            imdbId
+                        )
+
+                        currentScreen =
+                            Screen.MOVIE_DETAILS
+                    }
+                )
+            }
+
+            Screen.MOVIE_DETAILS -> {
+                MovieDetailsScreen(
+                    viewModel = movieDetailsViewModel
                 )
             }
         }

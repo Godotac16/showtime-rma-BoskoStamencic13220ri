@@ -1,5 +1,6 @@
 package com.example.multiplatforproject.presentation.movies
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +20,8 @@ import com.example.multiplatforproject.presentation.movies.model.MoviesIntent
 
 @Composable
 fun MoviesScreen(
-    viewModel: MoviesViewModel
+    viewModel: MoviesViewModel,
+    onMovieClick: (String) -> Unit
 ) {
 
     val state = viewModel.state
@@ -56,7 +58,11 @@ fun MoviesScreen(
             items(state.movies) { movie ->
 
                 Card(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            onMovieClick(movie.imdbId)
+                        },
                     elevation = CardDefaults.cardElevation(
                         defaultElevation = 4.dp
                     )

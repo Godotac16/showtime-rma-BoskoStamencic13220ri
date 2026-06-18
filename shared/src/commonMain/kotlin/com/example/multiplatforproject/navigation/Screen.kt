@@ -4,5 +4,6 @@ enum class Screen {
     SPLASH,
     LOGIN,
     SIGNUP,
-    MOVIES
+    MOVIES,
+    MOVIE_DETAILS
 }
