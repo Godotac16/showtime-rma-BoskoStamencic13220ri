@@ -7,6 +7,11 @@ import kotlinx.serialization.Serializable
 data class SignupResponse(
 
     @SerialName("access_token")
-    val accessToken: String
+    val accessToken: String,
+
+    @SerialName("expires_in")
+    val expiresIn: Long,
+
+    val user: User
 
 )
