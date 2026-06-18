@@ -10,9 +10,8 @@ import androidx.compose.ui.Modifier
 import com.example.multiplatforproject.navigation.Screen
 import com.example.multiplatforproject.presentation.auth.LoginScreen
 import com.example.multiplatforproject.presentation.auth.SignupScreen
-import com.example.multiplatforproject.presentation.auth.viewmodel.AuthViewModel
 import com.example.multiplatforproject.presentation.splash.SplashScreen
-
+import com.example.multiplatforproject.presentation.auth.viewmodel.AuthViewModel
 @Composable
 fun App() {
 
