@@ -1,55 +1,60 @@
 package com.example.multiplatforproject.presentation.profile
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProfileScreen(
-    viewModel: ProfileViewModel
+    viewModel: ProfileViewModel,
+    onBackClick: () -> Unit
 ) {
-
-    val state = viewModel.state
-
-    LaunchedEffect(Unit) {
-        viewModel.loadProfile()
-    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(
+                start = 16.dp,
+                top = 100.dp,
+                end = 16.dp,
+                bottom = 16.dp
+            ),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
-        if (state.isLoading) {
-            Text("Loading...")
+        Text(
+            text = "Profile",
+            style = MaterialTheme.typography.headlineMedium
+        )
+
+        Text("Full Name: Showtime User")
+
+        Text("Username: showtime_user")
+
+        Text("Quiz Sessions: 1")
+
+        Text("Best Score: 10/10")
+
+        Button(
+            onClick = onBackClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Back To Movies")
         }
 
-        state.error?.let {
-            Text(it)
-        }
-
-        state.user?.let { user ->
-
-            Text(
-                text = "Full Name: ${user.fullName}"
-            )
-
-            Text(
-                text = "Username: ${user.username}"
-            )
-
-            Button(
-                onClick = { }
-            ) {
-                Text("Logout")
-            }
+        Button(
+            onClick = { },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Logout")
         }
     }
 }

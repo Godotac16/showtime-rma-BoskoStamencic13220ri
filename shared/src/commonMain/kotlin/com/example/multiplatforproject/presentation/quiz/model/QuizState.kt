@@ -8,5 +8,7 @@ data class QuizState(
 
     val score: Int = 0,
 
-    val isFinished: Boolean = false
+    val isFinished: Boolean = false,
+
+    val timeLeft: Int = 60
 )

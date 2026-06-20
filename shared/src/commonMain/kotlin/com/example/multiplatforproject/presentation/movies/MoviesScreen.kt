@@ -23,7 +23,8 @@ import com.example.multiplatforproject.presentation.movies.model.MoviesIntent
 fun MoviesScreen(
     viewModel: MoviesViewModel,
     onMovieClick: (String) -> Unit,
-    onQuizClick: () -> Unit
+    onQuizClick: () -> Unit,
+    onProfileClick: () -> Unit
 ) {
 
     val state = viewModel.state
@@ -54,9 +55,18 @@ fun MoviesScreen(
             onClick = onQuizClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(vertical = 4.dp)
         ) {
             Text("Start Quiz")
+        }
+
+        Button(
+            onClick = onProfileClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
+        ) {
+            Text("Profile")
         }
 
         if (state.isLoading) {

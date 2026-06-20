@@ -22,6 +22,12 @@ fun QuizScreen(
 
     if (state.isFinished) {
 
+        val wrongAnswers =
+            state.questions.size - state.score
+
+        val percentage =
+            (state.score * 100) / state.questions.size
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -40,6 +46,18 @@ fun QuizScreen(
 
             Text(
                 text = "Score: ${state.score}/${state.questions.size}"
+            )
+
+            Text(
+                text = "Correct Answers: ${state.score}"
+            )
+
+            Text(
+                text = "Wrong Answers: $wrongAnswers"
+            )
+
+            Text(
+                text = "Percentage: $percentage%"
             )
 
             Button(

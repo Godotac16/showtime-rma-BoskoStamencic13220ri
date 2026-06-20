@@ -10,6 +10,8 @@ import com.example.multiplatforproject.presentation.movies.MovieDetailsScreen
 import com.example.multiplatforproject.presentation.movies.MovieDetailsViewModel
 import com.example.multiplatforproject.presentation.movies.MoviesScreen
 import com.example.multiplatforproject.presentation.movies.MoviesViewModel
+import com.example.multiplatforproject.presentation.profile.ProfileScreen
+import com.example.multiplatforproject.presentation.profile.ProfileViewModel
 import com.example.multiplatforproject.presentation.quiz.QuizScreen
 import com.example.multiplatforproject.presentation.quiz.QuizViewModel
 import com.example.multiplatforproject.presentation.splash.SplashScreen
@@ -35,6 +37,10 @@ fun App() {
 
     val quizViewModel = remember {
         QuizViewModel()
+    }
+
+    val profileViewModel = remember {
+        ProfileViewModel()
     }
 
     MaterialTheme {
@@ -90,6 +96,10 @@ fun App() {
                     onQuizClick = {
                         quizViewModel.restartQuiz()
                         currentScreen = Screen.QUIZ
+                    },
+
+                    onProfileClick = {
+                        currentScreen = Screen.PROFILE
                     }
                 )
             }
@@ -107,6 +117,16 @@ fun App() {
             Screen.QUIZ -> {
                 QuizScreen(
                     viewModel = quizViewModel,
+
+                    onBackClick = {
+                        currentScreen = Screen.MOVIES
+                    }
+                )
+            }
+
+            Screen.PROFILE -> {
+                ProfileScreen(
+                    viewModel = profileViewModel,
 
                     onBackClick = {
                         currentScreen = Screen.MOVIES
