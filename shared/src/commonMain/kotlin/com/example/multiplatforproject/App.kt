@@ -10,6 +10,8 @@ import com.example.multiplatforproject.presentation.movies.MovieDetailsScreen
 import com.example.multiplatforproject.presentation.movies.MovieDetailsViewModel
 import com.example.multiplatforproject.presentation.movies.MoviesScreen
 import com.example.multiplatforproject.presentation.movies.MoviesViewModel
+import com.example.multiplatforproject.presentation.quiz.QuizScreen
+import com.example.multiplatforproject.presentation.quiz.QuizViewModel
 import com.example.multiplatforproject.presentation.splash.SplashScreen
 
 @Composable
@@ -29,6 +31,10 @@ fun App() {
 
     val movieDetailsViewModel = remember {
         MovieDetailsViewModel()
+    }
+
+    val quizViewModel = remember {
+        QuizViewModel()
     }
 
     MaterialTheme {
@@ -70,6 +76,7 @@ fun App() {
             Screen.MOVIES -> {
                 MoviesScreen(
                     viewModel = moviesViewModel,
+
                     onMovieClick = { imdbId ->
 
                         movieDetailsViewModel.loadMovie(
@@ -78,13 +85,32 @@ fun App() {
 
                         currentScreen =
                             Screen.MOVIE_DETAILS
+                    },
+
+                    onQuizClick = {
+                        quizViewModel.restartQuiz()
+                        currentScreen = Screen.QUIZ
                     }
                 )
             }
 
             Screen.MOVIE_DETAILS -> {
                 MovieDetailsScreen(
-                    viewModel = movieDetailsViewModel
+                    viewModel = movieDetailsViewModel,
+
+                    onBackClick = {
+                        currentScreen = Screen.MOVIES
+                    }
+                )
+            }
+
+            Screen.QUIZ -> {
+                QuizScreen(
+                    viewModel = quizViewModel,
+
+                    onBackClick = {
+                        currentScreen = Screen.MOVIES
+                    }
                 )
             }
         }

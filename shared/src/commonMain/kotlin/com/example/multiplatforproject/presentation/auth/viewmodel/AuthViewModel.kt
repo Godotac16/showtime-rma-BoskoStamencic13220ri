@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.example.multiplatforproject.data.remote.ApiResult
+import com.example.multiplatforproject.data.remote.SessionManager
 import com.example.multiplatforproject.data.repository.AuthRepository
 import com.example.multiplatforproject.presentation.auth.model.AuthIntent
 import com.example.multiplatforproject.presentation.auth.model.AuthState
@@ -73,19 +74,20 @@ class AuthViewModel {
 
                 is ApiResult.Success -> {
 
+                    SessionManager.accessToken =
+                        result.data.accessToken
+
                     state = state.copy(
                         isLoading = false,
                         isLoggedIn = true
                     )
-
-                    println(result.data.accessToken)
                 }
 
                 is ApiResult.Error -> {
 
                     state = state.copy(
                         isLoading = false,
-                        error = result.message
+                        error = "Wrong username or password"
                     )
                 }
             }
@@ -111,19 +113,20 @@ class AuthViewModel {
 
                 is ApiResult.Success -> {
 
+                    SessionManager.accessToken =
+                        result.data.accessToken
+
                     state = state.copy(
                         isLoading = false,
                         isLoggedIn = true
                     )
-
-                    println(result.data.accessToken)
                 }
 
                 is ApiResult.Error -> {
 
                     state = state.copy(
                         isLoading = false,
-                        error = result.message
+                        error = "Username already exists"
                     )
                 }
             }

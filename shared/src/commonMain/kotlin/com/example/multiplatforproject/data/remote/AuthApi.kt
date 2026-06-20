@@ -9,7 +9,6 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
-import io.ktor.serialization.JsonConvertException
 
 object AuthApi {
 
@@ -31,7 +30,7 @@ object AuthApi {
 
                     setBody(
                         LoginRequest(
-                            username = username,
+                            username = username.trim(),
                             password = password
                         )
                     )
@@ -39,16 +38,12 @@ object AuthApi {
 
             ApiResult.Success(response)
 
-        } catch (e: JsonConvertException) {
-
-            ApiResult.Error(
-                "Wrong username or password"
-            )
-
         } catch (e: Exception) {
 
+            e.printStackTrace()
+
             ApiResult.Error(
-                e.message ?: "Unknown error"
+                e.toString()
             )
         }
     }
@@ -70,8 +65,8 @@ object AuthApi {
 
                     setBody(
                         SignupRequest(
-                            fullName = fullName,
-                            username = username,
+                            fullName = fullName.trim(),
+                            username = username.trim(),
                             password = password
                         )
                     )
@@ -79,16 +74,12 @@ object AuthApi {
 
             ApiResult.Success(response)
 
-        } catch (e: JsonConvertException) {
-
-            ApiResult.Error(
-                "Username already exists or invalid data"
-            )
-
         } catch (e: Exception) {
 
+            e.printStackTrace()
+
             ApiResult.Error(
-                e.message ?: "Unknown error"
+                e.toString()
             )
         }
     }

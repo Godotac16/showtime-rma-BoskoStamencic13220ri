@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -21,7 +22,8 @@ import com.example.multiplatforproject.presentation.movies.model.MoviesIntent
 @Composable
 fun MoviesScreen(
     viewModel: MoviesViewModel,
-    onMovieClick: (String) -> Unit
+    onMovieClick: (String) -> Unit,
+    onQuizClick: () -> Unit
 ) {
 
     val state = viewModel.state
@@ -35,13 +37,27 @@ fun MoviesScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(
+                start = 16.dp,
+                top = 70.dp,
+                end = 16.dp,
+                bottom = 16.dp
+            )
     ) {
 
         Text(
             text = "Movies",
             style = MaterialTheme.typography.headlineMedium
         )
+
+        Button(
+            onClick = onQuizClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        ) {
+            Text("Start Quiz")
+        }
 
         if (state.isLoading) {
             Text("Loading...")

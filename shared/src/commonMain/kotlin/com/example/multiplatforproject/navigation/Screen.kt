@@ -5,5 +5,6 @@ enum class Screen {
     LOGIN,
     SIGNUP,
     MOVIES,
-    MOVIE_DETAILS
+    MOVIE_DETAILS,
+    QUIZ
 }

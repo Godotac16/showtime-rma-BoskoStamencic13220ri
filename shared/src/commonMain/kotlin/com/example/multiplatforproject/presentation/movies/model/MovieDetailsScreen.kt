@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun MovieDetailsScreen(
-    viewModel: MovieDetailsViewModel
+    viewModel: MovieDetailsViewModel,
+    onBackClick: () -> Unit
 ) {
 
     val state = viewModel.state
@@ -22,10 +23,21 @@ fun MovieDetailsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-
+            .padding(
+                start = 16.dp,
+                top = 120.dp,
+                end = 16.dp,
+                bottom = 16.dp
+            ),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
+
+        Button(
+            onClick = onBackClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Back To Movies")
+        }
 
         if (state.isLoading) {
             Text("Loading...")
