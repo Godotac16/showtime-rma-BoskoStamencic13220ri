@@ -24,6 +24,13 @@ class AuthViewModel {
     var state by mutableStateOf(AuthState())
         private set
 
+    fun logout() {
+
+        SessionManager.accessToken = ""
+
+        state = AuthState()
+    }
+
     fun onIntent(intent: AuthIntent) {
 
         when (intent) {

@@ -10,14 +10,14 @@ class QuizViewModel {
 
     var state by mutableStateOf(
         QuizState(
-            questions = sampleQuestions()
+            questions = sampleQuestions().shuffled()
         )
     )
         private set
 
     fun restartQuiz() {
         state = QuizState(
-            questions = sampleQuestions()
+            questions = sampleQuestions().shuffled()
         )
     }
 
@@ -64,7 +64,7 @@ class QuizViewModel {
                         "Christopher Nolan",
                         "Ridley Scott",
                         "Martin Scorsese"
-                    ),
+                    ).shuffled(),
                     "James Cameron"
                 ),
 
@@ -75,7 +75,7 @@ class QuizViewModel {
                         "2001",
                         "1995",
                         "2003"
-                    ),
+                    ).shuffled(),
                     "1999"
                 ),
 
@@ -86,7 +86,7 @@ class QuizViewModel {
                         "Chris Evans",
                         "Mark Ruffalo",
                         "Tom Holland"
-                    ),
+                    ).shuffled(),
                     "Robert Downey Jr."
                 ),
 
@@ -97,7 +97,7 @@ class QuizViewModel {
                         "Steven Spielberg",
                         "James Cameron",
                         "David Fincher"
-                    ),
+                    ).shuffled(),
                     "Christopher Nolan"
                 ),
 
@@ -108,7 +108,7 @@ class QuizViewModel {
                         "Titanic",
                         "Avatar",
                         "Gladiator"
-                    ),
+                    ).shuffled(),
                     "Pirates of the Caribbean"
                 ),
 
@@ -119,7 +119,7 @@ class QuizViewModel {
                         "Ben Affleck",
                         "Robert Pattinson",
                         "Michael Keaton"
-                    ),
+                    ).shuffled(),
                     "Christian Bale"
                 ),
 
@@ -130,7 +130,7 @@ class QuizViewModel {
                         "Pulp Fiction",
                         "The Shawshank Redemption",
                         "Speed"
-                    ),
+                    ).shuffled(),
                     "Forrest Gump"
                 ),
 
@@ -141,7 +141,7 @@ class QuizViewModel {
                         "Titanic",
                         "Avengers Endgame",
                         "Frozen"
-                    ),
+                    ).shuffled(),
                     "Avatar"
                 ),
 
@@ -152,7 +152,7 @@ class QuizViewModel {
                         "Christopher Nolan",
                         "Peter Jackson",
                         "Ridley Scott"
-                    ),
+                    ).shuffled(),
                     "James Cameron"
                 ),
 
@@ -163,7 +163,7 @@ class QuizViewModel {
                         "Tom Cruise",
                         "Brad Pitt",
                         "Matt Damon"
-                    ),
+                    ).shuffled(),
                     "Keanu Reeves"
                 )
             )

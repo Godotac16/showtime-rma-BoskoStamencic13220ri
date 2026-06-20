@@ -45,7 +45,8 @@ fun QuizScreen(
             )
 
             Text(
-                text = "Score: ${state.score}/${state.questions.size}"
+                text = "Final Score: ${state.score}/${state.questions.size}",
+                style = MaterialTheme.typography.titleLarge
             )
 
             Text(
@@ -57,7 +58,7 @@ fun QuizScreen(
             )
 
             Text(
-                text = "Percentage: $percentage%"
+                text = "Success Rate: $percentage%"
             )
 
             Button(

@@ -11,11 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.multiplatforproject.data.remote.SessionManager
 
 @Composable
 fun ProfileScreen(
     viewModel: ProfileViewModel,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onLogoutClick: () -> Unit
 ) {
 
     Column(
@@ -51,7 +53,10 @@ fun ProfileScreen(
         }
 
         Button(
-            onClick = { },
+            onClick = {
+                SessionManager.accessToken = ""
+                onLogoutClick()
+            },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Logout")

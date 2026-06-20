@@ -130,6 +130,13 @@ fun App() {
 
                     onBackClick = {
                         currentScreen = Screen.MOVIES
+                    },
+
+                    onLogoutClick = {
+
+                        authViewModel.logout()
+
+                        currentScreen = Screen.LOGIN
                     }
                 )
             }
